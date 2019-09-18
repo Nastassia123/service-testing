@@ -1,6 +1,7 @@
 package sample;
 
 
+import RepositorySpecification.CertificateSpecification;
 import RepositorySpecification.TagSpecification;
 import SQLRepository.CertificateRepositoryImpl;
 import Entities.Certificate;
@@ -21,10 +22,12 @@ public class Main {
         Date date = format.parse("2017-01-17");
         String dateString = format.format(date);
         CertificateRepositoryImpl certificateSQLRepository = new CertificateRepositoryImpl();
-        Certificate certificate = new Certificate(18,  "Kate",  dateString ,dateString,23.2);
+        Certificate certificate = new Certificate(33,  "Kate",  dateString ,dateString,23.2);
         System.out.println(certificateSQLRepository.add(certificate));
         certificateSQLRepository.update(certificate);
         certificateSQLRepository.remove(certificate);
-        certificateSQLRepository.getObjects(new TagSpecification());
+        Certificate certificate2 = new Certificate(34,  "Kate",  dateString ,dateString,23.2);
+        certificateSQLRepository.add(certificate);
+        certificateSQLRepository.getObjects(new CertificateSpecification());
     }
 }

@@ -3,12 +3,12 @@ package RepositorySpecification;
 public class CertificateSpecification extends Specification {
 
 
-        private String queueToSelectSpecification = "select * from tag";
+        private static final String QUEUE_TO_SELECT_SPECIFICATION = "select * from certificate";
 
         @Override
         public String returnQueueOfEntity() {
 
-            return queueToSelectSpecification;
+            return QUEUE_TO_SELECT_SPECIFICATION;
         }
     }
 

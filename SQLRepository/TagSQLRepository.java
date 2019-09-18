@@ -14,13 +14,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagSQLRepository implements TagRepository {
+public class TagSQLRepository implements TagRepository{
+
+        private static final String QUERY_FOR_INSERT_REQUEST = "INSERT INTO tag VALUES(?, ?)";
+        private static final String QUERY_FOR_UPDATE_REQUEST = "UPDATE tag set name = ? WHERE name = ?";
+        private static final String QUERY_FOR_REMOVE_REQUEST  = "DELETE from tag WHERE name= ?";
 
     @Override
     public int add(Tag tag) throws SQLException {
-        final String quesryForInsertRequest = "INSERT INTO tag VALUES(?, ?)";
+
         int risultato = 0;
-        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(quesryForInsertRequest, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(QUERY_FOR_INSERT_REQUEST, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, "key value");
         statement.setLong(2, tag.getId());
         statement.setString(3, tag.getName());
@@ -31,8 +35,8 @@ public class TagSQLRepository implements TagRepository {
 
     @Override
     public int update(Tag tag) throws SQLException {
-        final String quesryForUpdateRequest = "UPDATE tag set name = ? WHERE name = ?";
-        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(quesryForUpdateRequest);
+
+        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(QUERY_FOR_UPDATE_REQUEST);
         statement.setString(1, "Nastassia");
         statement.setString(2, tag.getName());
         int i = statement.executeUpdate();
@@ -41,8 +45,8 @@ public class TagSQLRepository implements TagRepository {
 
     @Override
     public int remove(Tag tag) throws SQLException {
-        final String quesryForRemoveRequest = "DELETE from tag WHERE name= ?";
-        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(quesryForRemoveRequest);
+
+        PreparedStatement statement = new SQLConnect().SQLConnection().prepareStatement(QUERY_FOR_REMOVE_REQUEST);
         statement.setString(1, tag.getName());
         int i = statement.executeUpdate();
         return i;

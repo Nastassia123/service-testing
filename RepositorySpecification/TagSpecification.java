@@ -1,11 +1,11 @@
 package RepositorySpecification;
 
 public class TagSpecification extends Specification{
-    private String queueToSelectTag = "select * from tag";
+    private static final String QUEUE_TO_SELECT_TAG = "select id_tag, name from tag";
 
     @Override
     public String returnQueueOfEntity() {
 
-        return queueToSelectTag;
+        return QUEUE_TO_SELECT_TAG;
     }
 }
